@@ -50,16 +50,7 @@ app.delete("/deleteCard/:id", async (req, res) => {
     }
 } )
 
-app.update("/updateCard/:id", async (req, res) => {
-    try {
-        const id = parseInt(req.params.id);
-        const cards = await Card.findById(req.params.id);
-        res.status(200).json(cards);
-    } catch (error) {
-        res.status(400).send(error);
-        console.log(error);
-    }
-} )
+
 
 app.post("/send", (req, res) => {
     const {user, email} = req.body;

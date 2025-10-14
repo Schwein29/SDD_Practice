@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://5BTICS:KKzrzhhsG3wr63nr@cluster0.lynhzlh.mongodb.net/";
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://5BTICS:estanoseolvida@cluster0.lynhzlh.mongodb.net/";
 
 export const connectDB = async () => {
     try {
