@@ -1,0 +1,13 @@
+.title{
+    color: brown;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    background-color: yellow;
+}
+
+.fake{
+    color: violet;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background-color: black;
+}
