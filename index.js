@@ -1,6 +1,6 @@
 import express from "express";
 import { connectDB } from "./db.js";
-import { Card } from "../models/cards.js";
+import { Card } from "./models/cards.js";
 
 connectDB();
 const app = express();
@@ -49,7 +49,6 @@ app.delete("/deleteCard/:id", async (req, res) => {
         console.log(error);
     }
 } )
-
 
 
 app.post("/send", (req, res) => {
