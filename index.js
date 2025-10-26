@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/CreateCards", async (req, res) => {
+app.post("/createCards", async (req, res) => {
     try {
         const card = await Card.create(req.body);
         console.log(card);
@@ -41,9 +41,38 @@ app.get("/getCard/:id", async (req, res) => {
 
 app.delete("/deleteCard/:id", async (req, res) => {
     try {
-        const id = parseInt(req.params.id);
-        const cards = await Card.deleteOne(req.params.id);
-        res.status(200).json(cards);
+        const { id } = req.params;
+        const deletedCard = await Card.findByIdAndDelete(id);
+        res.status(200).json({ message: "Card deleted successfully" });
+    } catch (error) {
+        res.status(400).send(error);
+        console.log(error);
+    }
+} )
+
+app.patch("/updateCard/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedCard = await Card.findByIdAndUpdate(id, req.body, {
+        new: true,
+        runValidators: true,
+        });
+        res.status(200).json(updatedCard);
+    } catch (error) {
+        res.status(400).send(error);
+        console.log(error);
+    }
+} )
+
+app.put("/updateCardFull/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedCard = await Card.findByIdAndUpdate(id, req.body, {
+        new: true,
+        overwrite: false,
+        runValidators: true,
+        });
+        res.status(200).json(updatedCard);
     } catch (error) {
         res.status(400).send(error);
         console.log(error);
