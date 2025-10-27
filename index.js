@@ -97,6 +97,22 @@ app.put("/updateCard/:id", async (req, res) => {
     }
 } )
 
+app.get("/endpoints", (req, res) => {
+  res.status(200).send(`
+     Endpoints disponibles:
+
+    GET  /getAllCards          → Obtener todas las tarjetas
+    GET  /getCard/:id            → Obtener una tarjeta por ID
+    POST /createCards                → Crear una nueva tarjeta
+    PUT  /updateCard/:id            → Reemplazar una tarjeta completa
+    PATCH /updateCard/:id           → Actualizar parcialmente una tarjeta
+    DELETE /deleteCard/:id          → Eliminar una tarjeta
+
+     Base URL: https://sdd-practice.onrender.com
+  `);
+});
+
+
 
 app.post("/send", (req, res) => {
     const {user, email} = req.body;
