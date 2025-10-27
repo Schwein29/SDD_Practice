@@ -98,6 +98,48 @@ app.put("/updateCard/:id", async (req, res) => {
 } )
 
 
+app.get("/endpoints", (req, res) => {
+  const template = [
+    {
+      path: "https://sdd-practice.onrender.com/getAllCards",
+      method: "GET",
+      description: "Obtiene todas las tarjetas almacenadas en la base de datos"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/getCard/:id",
+      method: "GET",
+      description: "Obtiene una tarjeta específica por su ID"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/createCards",
+      method: "POST",
+      description: "Crea una nueva tarjeta en la base de datos"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/updateCard/:id",
+      method: "PUT",
+      description: "Reemplaza completamente una tarjeta por ID"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/updateCard/:id",
+      method: "PATCH",
+      description: "Actualiza parcialmente una tarjeta existente por ID"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/deleteCard/:id",
+      method: "DELETE",
+      description: "Elimina una tarjeta existente por ID"
+    }
+  ];
+
+  res.status(200).json({
+    baseURL: "https://sdd-practice.onrender.com",
+    endpoints: template
+  });
+});
+
+
+
 app.post("/send", (req, res) => {
     const {user, email} = req.body;
     // por defaul hace una destructuracion JSONN
