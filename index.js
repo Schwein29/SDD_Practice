@@ -149,7 +149,7 @@ app.post("/send", (req, res) => {
 })
 
 
-app.get("/hellow", (req, res) => {
+app.get("/hello", (req, res) => {
     res.status(200).send("Hello World desde Node.js");
 });
 
