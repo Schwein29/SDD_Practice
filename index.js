@@ -64,7 +64,7 @@ app.patch("/updateCard/:id", async (req, res) => {
     }
 } )
 
-app.put("/updateCardFull/:id", async (req, res) => {
+app.put("/updateCard/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const { name, link, description } = req.body;
