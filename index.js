@@ -97,19 +97,45 @@ app.put("/updateCard/:id", async (req, res) => {
     }
 } )
 
+
 app.get("/endpoints", (req, res) => {
-  res.status(200).send(`
-     Endpoints disponibles:
+  const template = [
+    {
+      path: "https://sdd-practice.onrender.com/getAllCards",
+      method: "GET",
+      description: "Obtiene todas las tarjetas almacenadas en la base de datos"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/getCard/:id",
+      method: "GET",
+      description: "Obtiene una tarjeta específica por su ID"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/createCards",
+      method: "POST",
+      description: "Crea una nueva tarjeta en la base de datos"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/updateCard/:id",
+      method: "PUT",
+      description: "Reemplaza completamente una tarjeta por ID"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/updateCard/:id",
+      method: "PATCH",
+      description: "Actualiza parcialmente una tarjeta existente por ID"
+    },
+    {
+      path: "https://sdd-practice.onrender.com/deleteCard/:id",
+      method: "DELETE",
+      description: "Elimina una tarjeta existente por ID"
+    }
+  ];
 
-    GET  /getAllCards          → Obtener todas las tarjetas
-    GET  /getCard/:id            → Obtener una tarjeta por ID
-    POST /createCards                → Crear una nueva tarjeta
-    PUT  /updateCard/:id            → Reemplazar una tarjeta completa
-    PATCH /updateCard/:id           → Actualizar parcialmente una tarjeta
-    DELETE /deleteCard/:id          → Eliminar una tarjeta
-
-     Base URL: https://sdd-practice.onrender.com
-  `);
+  res.status(200).json({
+    baseURL: "https://sdd-practice.onrender.com",
+    endpoints: template
+  });
 });
 
 
