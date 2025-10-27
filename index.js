@@ -67,12 +67,30 @@ app.patch("/updateCard/:id", async (req, res) => {
 app.put("/updateCardFull/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const updatedCard = await Card.findByIdAndUpdate(id, req.body, {
-        new: true,
-        overwrite: false,
-        runValidators: true,
-        });
-        res.status(200).json(updatedCard);
+        const { name, link, description } = req.body;
+
+        if (!name || !link) {
+         return res.status(400).json({ message: "Los campos 'name' y 'link' son obligatorios." });
+        }
+
+        const card = await Card.findById(id);
+        if (!card) {
+        return res.status(404).json({ message: "Card no encontrada." });
+        }
+
+        card.name = name;
+        card.link = link;
+
+        if (Object.hasOwn(req.body, "description")) {
+        card.description = description;
+        } else {
+        card.description = undefined;
+        }
+
+        await card.save();
+
+        res.json(card);
+
     } catch (error) {
         res.status(400).send(error);
         console.log(error);
