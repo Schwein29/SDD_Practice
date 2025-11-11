@@ -1,9 +1,12 @@
 import express from "express";
 import { connectDB } from "./db.js";
 import { Card } from "./models/cards.js";
+import cors from "cors";
 
-connectDB();
 const app = express();
+app.use(cors());
+connectDB();
+
 
 app.use(express.json());
 
@@ -21,7 +24,7 @@ app.post("/createCards", async (req, res) => {
 app.get("/getAllCards", async (req, res) => {
     try {
         const card = await Card.find();
-        res.status(200).json(card).send("Card created succesfully");
+        res.status(200).json(card);
     } catch (error) {
         console.log(error);
         
