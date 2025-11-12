@@ -2,6 +2,7 @@ import express from "express";
 import { connectDB } from "./db.js";
 import { Card } from "./models/cards.js";
 import cors from "cors";
+import { Cal } from "./models/cal.js";
 
 const app = express();
 app.use(cors());
@@ -159,6 +160,27 @@ app.get("/hello", (req, res) => {
 app.get("/bonjour", (req, res) => {
     res.status(200).send("Bonjour tote le mond!");
 });
+
+app.post("/addCal", async (req, res) => {
+    try {
+        const cal = await Cal.create(req.body);
+        console.log(cal);
+        res.status(201).send("Student cal add")
+    } catch (error) {
+        console.log(error);
+        
+    }
+} )
+
+app.get("/getAllCals", async (req, res) => {
+    try {
+        const cal = await Cal.find();
+        res.status(200).json(cal);
+    } catch (error) {
+        console.log(error);
+        
+    }
+} )
 
 app.listen(3000, () => {
     console.log("Servidor Ejecutandose en http://localhost:3000");
