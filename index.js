@@ -172,7 +172,7 @@ app.post("/addCal", async (req, res) => {
     }
 } )
 
-app.get("/getAllCals", async (req, res) => {
+app.get("/getAllCal", async (req, res) => {
     try {
         const cal = await Cal.find();
         res.status(200).json(cal);
