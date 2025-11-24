@@ -71,10 +71,10 @@ app.patch("/updateCard/:id", async (req, res) => {
 app.put("/updateCard/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, link, description } = req.body;
+        const { name, link, description, like } = req.body;
 
-        if (!name || !link) {
-         return res.status(400).json({ message: "Los campos 'name' y 'link' son obligatorios." });
+        if (!name || !link || !like) {
+         return res.status(400).json({ message: "Los campos 'name', 'like' y 'link' son obligatorios." });
         }
 
         const card = await Card.findById(id);
@@ -84,6 +84,7 @@ app.put("/updateCard/:id", async (req, res) => {
 
         card.name = name;
         card.link = link;
+        card.like = like;
 
         if (Object.hasOwn(req.body, "description")) {
         card.description = description;

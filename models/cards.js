@@ -14,6 +14,11 @@ const cardSchema = new mongoose.Schema({
     description:{
         type: String,
         trim: true
+    },
+    like: {
+        type: String,
+        require: true,
+        trim:true
     }
 },
     {
